@@ -3,7 +3,6 @@ package com.softcadastro.softcadastro.controller;
 
 import com.softcadastro.softcadastro.dto.Response;
 import com.softcadastro.softcadastro.entity.Pessoa;
-import com.softcadastro.softcadastro.exception.PessoaNotFoundException;
 import com.softcadastro.softcadastro.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,7 +23,7 @@ public class PessoaController {
     }
 
     @GetMapping("/{id}")
-    public Pessoa findById(@PathVariable Long id) throws PessoaNotFoundException {
+    public Pessoa findById(@PathVariable Long id){
         return pessoaService.findById(id);
     }
 
@@ -41,12 +40,12 @@ public class PessoaController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteById(@PathVariable Long id) throws PessoaNotFoundException {
+    public void deleteById(@PathVariable Long id){
         pessoaService.delete(id);
     }
 
     @PutMapping("/{id}")
-    public void updateById(@PathVariable Long id, @RequestBody @Valid Pessoa pessoa) throws PessoaNotFoundException {
+    public void updateById(@PathVariable Long id, @RequestBody @Valid Pessoa pessoa){
         pessoaService.updateById(id, pessoa);
     }
 }

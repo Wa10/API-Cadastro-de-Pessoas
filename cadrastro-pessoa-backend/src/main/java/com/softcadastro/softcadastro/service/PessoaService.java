@@ -3,10 +3,11 @@ package com.softcadastro.softcadastro.service;
 
 import com.softcadastro.softcadastro.dto.Response;
 import com.softcadastro.softcadastro.entity.Pessoa;
-import com.softcadastro.softcadastro.exception.PessoaNotFoundException;
 import com.softcadastro.softcadastro.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -21,31 +22,27 @@ public class PessoaService {
         this.pessoaRepository = pessoaRepository;
     }
 
-    public Response create(Pessoa pessoa){
+    public Response create( Pessoa pessoa){
         setarDataCadastros(pessoa);
         Pessoa savePessoa = pessoaRepository.save(pessoa);
         return criarMessageResponse(savePessoa.getId(), "Pessoa criada com o ID ");
     }
 
-    public List<Pessoa> listAll() {
-        List<Pessoa> allPessoas = pessoaRepository.findAll();
-
-        return allPessoas;
+    public List<Pessoa> listAll(){
+        return pessoaRepository.findAll();
     }
 
-    public Pessoa findById(Long id) throws PessoaNotFoundException {
-        Pessoa pessoa = pessoaRepository.findById(id)
-                .orElseThrow(() -> new PessoaNotFoundException(id));
-
-        return pessoa;
+    public Pessoa findById(Long id){
+        return pessoaRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa não encontrada com o id " + id ));
     }
 
-    public void delete(Long id) throws PessoaNotFoundException {
+    public void delete(Long id){
         verifyIfExist(id);
         pessoaRepository.deleteById(id);
     }
 
-    public void updateById(Long id, Pessoa pessoaParaAtualizar) throws PessoaNotFoundException {
+    public void updateById(Long id, Pessoa pessoaParaAtualizar) {
         verifyIfExist(id);
         setarDataCadastros(pessoaParaAtualizar);
         pessoaRepository.findById(id).
@@ -62,9 +59,9 @@ public class PessoaService {
 
     }
 
-    private Pessoa verifyIfExist(Long id) throws PessoaNotFoundException {
+    private Pessoa verifyIfExist(Long id){
         return pessoaRepository.findById(id)
-                .orElseThrow(() -> new PessoaNotFoundException(id));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa não encontrada com o id " + id ));
     }
 
     private Response criarMessageResponse(Long id, String message) {
