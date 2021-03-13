@@ -1,8 +1,8 @@
 package com.softcadastro.softcadastro.controller;
 
 
-import com.softcadastro.softcadastro.dto.PessoaDTO;
 import com.softcadastro.softcadastro.dto.Response;
+import com.softcadastro.softcadastro.entity.Pessoa;
 import com.softcadastro.softcadastro.exception.PessoaNotFoundException;
 import com.softcadastro.softcadastro.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/app/pessoa")
+@RequestMapping("/api/pessoas")
 public class PessoaController {
 
     private PessoaService pessoaService;
@@ -24,18 +24,18 @@ public class PessoaController {
     }
 
     @GetMapping("/{id}")
-    public PessoaDTO findById(@PathVariable Long id) throws PessoaNotFoundException {
+    public Pessoa findById(@PathVariable Long id) throws PessoaNotFoundException {
         return pessoaService.findById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Response create(@RequestBody @Valid PessoaDTO pessoaDTO){
-        return pessoaService.create(pessoaDTO);
+    public Response create(@RequestBody @Valid Pessoa pessoa){
+        return pessoaService.create(pessoa);
     }
 
     @GetMapping
-    public List<PessoaDTO> listAll(){
+    public List<Pessoa> listAll(){
         return pessoaService.listAll();
     }
 
@@ -46,7 +46,7 @@ public class PessoaController {
     }
 
     @PutMapping("/{id}")
-    public Response updateById(@PathVariable Long id, @RequestBody @Valid PessoaDTO pessoaDTO) throws PessoaNotFoundException {
-        return pessoaService.updateById(id, pessoaDTO);
+    public void updateById(@PathVariable Long id, @RequestBody @Valid Pessoa pessoa) throws PessoaNotFoundException {
+        pessoaService.updateById(id, pessoa);
     }
 }
