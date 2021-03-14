@@ -1,25 +1,22 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { NgModule } from '@angular/core';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CadastraPessoaComponent } from './Cadastro/cadastra-pessoa/cadastra-pessoa.component';
-import { ListaPessoaComponent } from './Cadastro/lista-pessoa/lista-pessoa.component';
-import { VisualizaPessoaComponent } from './Cadastro/visualiza-pessoa/visualiza-pessoa.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TemplateModule } from './template/template.module';
+import { HomeComponent } from './home/home.component';
+import { PessoasModule } from './pessoas/pessoas.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CadastraPessoaComponent,
-    ListaPessoaComponent,
-    VisualizaPessoaComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatToolbarModule,
-    BrowserAnimationsModule
+    TemplateModule,
+    PessoasModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,12 +1,9 @@
-import { CadastraPessoaComponent } from './Cadastro/cadastra-pessoa/cadastra-pessoa.component';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { ListaPessoaComponent } from './Cadastro/lista-pessoa/lista-pessoa.component';
+import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'pessoa', pathMatch: 'full' },
-  { path: 'pessoas', component: ListaPessoaComponent },
-  { path: 'adicionar', component: CadastraPessoaComponent }
+  {path: 'home', component: HomeComponent}
 ];
 
 @NgModule({
