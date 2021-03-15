@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Pessoa } from '../pessoa';
 
 @Component({
   selector: 'app-pessoasform',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PessoasformComponent implements OnInit {
 
-  constructor() { }
+  pessoa: Pessoa;
+
+  constructor() { 
+    this.pessoa = new Pessoa();
+  }
 
   ngOnInit(): void {
+  }
+
+  onSubmit(){
+    console.log(this.pessoa)
   }
 
 }
