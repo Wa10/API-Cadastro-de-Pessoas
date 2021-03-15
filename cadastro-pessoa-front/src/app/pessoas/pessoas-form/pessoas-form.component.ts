@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PessoasService } from 'src/app/pessoas.service';
 import { Pessoa } from '../pessoa';
 
 @Component({
@@ -10,8 +11,8 @@ export class PessoasformComponent implements OnInit {
 
   pessoa: Pessoa;
 
-  constructor() { 
-    this.pessoa = new Pessoa();
+  constructor( private service : PessoasService) { 
+    this.pessoa = service.getPessoa();
   }
 
   ngOnInit(): void {
