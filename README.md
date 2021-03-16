@@ -1,4 +1,4 @@
-# Sistema de cadastro de pessoas, integrando Frontend e API Rest;
+# Sistema de cadastro de pessoas - CRUD, integrando Frontend e API Rest;
 
 *Em desenvolvimento
 
