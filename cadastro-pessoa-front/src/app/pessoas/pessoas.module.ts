@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { PessoasRoutingModule } from './pessoas-routing.module';
 import { PessoasformComponent } from './pessoas-form/pessoas-form.component';
 import { FormsModule } from '@angular/forms';
+import { PessoasListaComponent } from './pessoas-lista/pessoas-lista.component';
 
 
 @NgModule({
   declarations: [
-    PessoasformComponent
+    PessoasformComponent,
+    PessoasListaComponent
   ],
   imports: [
     CommonModule,
@@ -17,6 +19,7 @@ import { FormsModule } from '@angular/forms';
   ],
   exports:[
     PessoasformComponent,
+    PessoasListaComponent,
   ]
 })
 export class PessoasModule { }

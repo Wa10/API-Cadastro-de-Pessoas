@@ -10,16 +10,26 @@ import { Pessoa } from '../pessoa';
 export class PessoasformComponent implements OnInit {
 
   pessoa: Pessoa;
+  success: boolean = false;
+  errors: String[] = [];
 
-  constructor( private service : PessoasService) { 
-    this.pessoa = service.getPessoa();
+  constructor( private service : PessoasService) {
+    this.pessoa = new Pessoa();
   }
 
   ngOnInit(): void {
   }
 
   onSubmit(){
-    console.log(this.pessoa)
+    console.log(this.pessoa);
+    this.service.salvar(this.pessoa)
+    .subscribe(response => {
+      this.success = true;
+      this.errors = [];
+    }, errorResponse => { 
+      this.success = false;
+      this.errors = errorResponse.error.erros;
+    });
   }
 
 }
