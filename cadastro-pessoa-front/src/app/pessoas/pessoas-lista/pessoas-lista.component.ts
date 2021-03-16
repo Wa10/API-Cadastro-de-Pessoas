@@ -14,12 +14,16 @@ export class PessoasListaComponent implements OnInit {
 
   constructor( 
     private service: PessoasService, 
-    private router: Router) { }
+    private router: Router) {}
 
   ngOnInit(): void {
     this.service.getLista().subscribe(resposta => {
         this.pessoas = resposta;
     });
+  }
+
+  novoCadastro(){
+    this.router.navigate(['/pessoas-form']);
   }
 
 }

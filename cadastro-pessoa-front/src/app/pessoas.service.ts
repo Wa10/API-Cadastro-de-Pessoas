@@ -14,8 +14,16 @@ export class PessoasService {
     return this.http.post<Pessoa>('http://localhost:8080/api/pessoas', pessoa);
   }
 
+  updateById(pessoa : Pessoa) : Observable<Pessoa> {
+    return this.http.put<any>(`http://localhost:8080/api/pessoas/${pessoa.id}`, pessoa);
+  }
+
   getLista():  Observable<Pessoa[]>{
     return this.http.get<Pessoa[]>('http://localhost:8080/api/pessoas');
+  }
+
+  findById(id: number): Observable<Pessoa>{
+    return this.http.get<Pessoa>(`http://localhost:8080/api/pessoas/${id}`);
   }
 
 }

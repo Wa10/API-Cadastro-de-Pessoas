@@ -1,14 +1,14 @@
-<h1 class="mt-4">Cliente</h1>
+<h1 class="mt-4">Pessoa</h1>
 <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Cadastro</li>
+    <li class="breadcrumb-item active">{{ pessoa.id ? 'Edição' : 'Cadastro'}}</li>
 </ol>
 <div class="container-fluid">
-    <form #clienteForm="ngForm" (ngSubmit)="onSubmit()">
+    <form #pessoaForm="ngForm" (ngSubmit)="onSubmit()">
 
         <div class="row">
             <div class="col-md-12">
                 <div class="alert alert-success" role="alert" *ngIf="success == true">
-                    Cliente salvo com sucesso!
+                    Pessoa salva com sucesso!
                 </div>
                 <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
                     {{ erro }}
@@ -62,7 +62,7 @@
                         disabled="true" />
                 </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label>Sexo</label>
                     <input type="text" class="form-control" [(ngModel)]="pessoa.sexo" name="sexo" />
@@ -71,9 +71,17 @@
         </div>
 
         <div class="row">
-            <div class="col-md-2">
-                <button type="submit" class="btn btn-success">
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-success" *ngIf="!pessoa.id">
                     <i class="fa fa-save"></i> Salvar
+                </button>
+
+                <button type="submit" class="btn btn-primary" *ngIf="pessoa.id">
+                    <i class="fa fa-redo-alt"></i> Atualizar
+                </button>
+
+                <button type="button" class="btn btn-danger ml-1" (click) = "voltar()">
+                    <i class="fa fa-arrow-circle-left"></i> Voltar
                 </button>
             </div>
         </div>
