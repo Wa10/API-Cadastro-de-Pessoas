@@ -8,18 +8,22 @@ import { TemplateModule } from './template/template.module';
 import { HomeComponent } from './home/home.component';
 import { PessoasModule } from './pessoas/pessoas.module';
 import { PessoasService } from './pessoas.service';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     TemplateModule,
-    PessoasModule
+    PessoasModule,
+    FormsModule,
   ],
   providers: [
     PessoasService,
